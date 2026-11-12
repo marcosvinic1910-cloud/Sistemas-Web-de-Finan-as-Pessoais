@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 30px auto;
+    background: #eef2f7;
+    color: #222;
+}
+
+h1 {
+    color: #3d6285;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0 12px 0;
+    box-sizing: border-box;
+}
+
+.cartao {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.barra {
+    background: #3d6285;
+    color: white;
+    padding: 8px;            
+    margin-bottom: 6px;
+    border-radius: 4px;
+    min-width: 120px;          
+    white-space: nowrap;       
+    box-sizing: border-box;
+    transition: width 0.3s ease;
+}
+
+#alerta {
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 15px;
+}

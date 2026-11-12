@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanças Pessoais</title>
+    <!-- Vincula o arquivo de estilo CSS externo -->
+    <link rel="stylesheet" href="eduarda.css">
+</head>
+<body>
+    <h1>Finanças Pessoais</h1>
+    
+    <label for="orcamento">Orçamento do mês (R$)</label>
+    <input type="number" id="orcamento" value="1000" min="0">
+
+    <h3>Quanto você gastou?</h3>
+    
+    <label for="alimentacao">Alimentação (R$)</label>
+    <input type="number" id="alimentacao" value="0" min="0">
+
+    <label for="transporte">Transporte (R$)</label>
+    <input type="number" id="transporte" value="0" min="0">
+
+    <label for="lazer">Lazer (R$)</label>
+    <input type="number" id="lazer" value="0" min="0">
+
+    <div class="cartao">Total gasto: <b id="total"></b></div>
+    <div class="cartao">Restante: <b id="restante"></b></div>
+    <div id="alerta"></div>
+
+    <h3>Gastos por categoria</h3>
+    <div class="barra" id="barraAlimentacao"></div>
+    <div class="barra" id="barraTransporte"></div>
+    <div class="barra" id="barraLazer"></div>
+
+    <!-- Vincula o arquivo de lógica JavaScript externo -->
+    <script src="script.js"></script>
+</body>
+</html>
