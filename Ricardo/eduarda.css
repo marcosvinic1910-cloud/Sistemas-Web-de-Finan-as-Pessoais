@@ -1,45 +1,53 @@
-body {
-    font-family: Arial, sans-serif;
-    max-width: 500px;
-    margin: 30px auto;
-    background: #eef2f7;
-    color: #222;
+[data-testid="stAppViewContainer"] {
+    background-color: #D0D0D0;
+}
+[data-testid="stHeader"] {
+    background-color: rgba(0, 0, 0, 0);
 }
 
-h1 {
-    color: #3d6285;
+
+.banner-topo {
+    background-color: #7898B8;
+    padding: 25px; 
+    border-radius: 12px; 
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+.banner-topo h1 { 
+    color: #FFFFFF !important; 
+    margin: 0; 
+    font-size: 30px; 
+}
+.banner-topo p { 
+    color: #F0F4F8; 
+    margin: 5px 0 0 0; 
+    font-size: 16px; 
 }
 
-input {
+
+[data-testid="stMetric"] {
+    background-color: #7898B8; 
+    padding: 15px; 
+    border-radius: 10px; 
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+[data-testid="stMetricLabel"] p,
+[data-testid="stMetricValue"] div {
+    color: #FFFFFF !important;
+}
+
+
+div.stButton > button {
+    background-color: #7898B8; 
+    color: white; 
+    border-radius: 8px; 
+    font-weight: bold; 
     width: 100%;
-    padding: 8px;
-    margin: 4px 0 12px 0;
-    box-sizing: border-box;
+    border: none;
+    padding: 10px;
 }
-
-.cartao {
-    background: white;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.barra {
-    background: #3d6285;
+div.stButton > button:hover {
+    background-color: #5E7D9C;
     color: white;
-    padding: 8px;            
-    margin-bottom: 6px;
-    border-radius: 4px;
-    min-width: 120px;          
-    white-space: nowrap;       
-    box-sizing: border-box;
-    transition: width 0.3s ease;
-}
-
-#alerta {
-    padding: 12px;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
-    margin-bottom: 15px;
 }

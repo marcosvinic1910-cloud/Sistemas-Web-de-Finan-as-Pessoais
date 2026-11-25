@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 def gerar_dados():
-    # Se o arquivo de gastos não existir, cria com os dados do Carlos
+   
     if not os.path.exists("despesas.csv"):
         dados_gastos = pd.DataFrame([
             {"Data": "01/11/2026", "Descrição": "Supermercado Pão de Açúcar", "Categoria": "Alimentação", "Valor": 450.00},
@@ -13,7 +13,7 @@ def gerar_dados():
         ])
         dados_gastos.to_csv("despesas.csv", index=False)
 
-    # Se o arquivo de investimentos não existir, cria com os dados do Carlos
+   
     if not os.path.exists("investimentos.csv"):
         dados_inv = pd.DataFrame([
             {"Data": "01/11/2026", "Ativo/Produto": "CDB Inter 100% CDI", "Tipo": "Renda Fixa", "Valor": 500.00},

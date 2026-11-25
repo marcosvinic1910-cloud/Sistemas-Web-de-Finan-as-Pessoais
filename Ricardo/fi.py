@@ -12,10 +12,17 @@ gerar_dados()
 
 st.set_page_config(layout="wide")
 
+with open("eduarda.css", encoding="utf-8") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
-st.title("Sistema Web de Finanças Pessoais")
-st.subheader("Rastreador de Gastos, Investimentos e Benefícios")
+st.markdown("""
+<div class="banner-topo">
+    <h1>💳 Sistema Web de Finanças Pessoais</h1>
+    <p>Rastreador Inteligente de Gastos, Investimentos e Benefícios</p>
+</div>
+""", unsafe_allow_html=True)
+
 
 
 st.sidebar.header("⚙️ Configurações")
