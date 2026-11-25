@@ -210,3 +210,5 @@ with aba_investimentos:
             title="Total acumulado por tipo de ativo"
         )
         st.plotly_chart(grafico_inv, width="stretch")
+
+        

@@ -32,12 +32,13 @@
     box-shadow: 0 3px 8px rgba(0,0,0,0.12);
 }
 
+
 [data-testid="stMetricLabel"] p,
 [data-testid="stMetricValue"] div {
     color: #FFFFFF !important;
 }
 
-
+ 
 div.stButton > button {
     background-color: #7898B8; 
     color: white; 
@@ -62,3 +63,4 @@ div.stButton > button:hover {
     font-size: 20px !important;
     font-weight: bold !important;
 }
+    

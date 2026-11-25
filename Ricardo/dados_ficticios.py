@@ -21,3 +21,4 @@ def gerar_dados():
             {"Data": "05/11/2026", "Ativo/Produto": "Ações Petrobras (PETR4)", "Tipo": "Ações", "Valor": 300.00}
         ])
         dados_inv.to_csv("investimentos.csv", index=False)
+        
