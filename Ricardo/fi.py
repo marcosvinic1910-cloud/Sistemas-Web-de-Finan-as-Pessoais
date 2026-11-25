@@ -124,6 +124,21 @@ with aba_gastos:
     st.write("### 📋 Histórico Geral de Despesas")
     st.dataframe(df_gastos, width="stretch")
 
+    col_b1, col_b2 = st.columns(2)
+    with col_b1:
+        st.download_button(
+            label="📥 Baixar Planilha de Gastos (CSV)",
+            data=df_gastos.to_csv(index=False).encode("utf-8"),
+            file_name="meus_gastos.csv",
+            mime="text/csv"
+        )
+    with col_b2:
+        if st.button("🗑️ Apagar Último Gasto"):
+            if not df_gastos.empty:
+                df_gastos = df_gastos.iloc[:-1]
+                df_gastos.to_csv("despesas.csv", index=False)
+                st.rerun()
+
     if not df_gastos.empty:
         st.markdown("---")
         st.write("### 📊 Distribuição de Gastos por Categoria")
@@ -168,6 +183,21 @@ with aba_investimentos:
     st.markdown("---")
     st.write("### 📋 Histórico Geral de Investimentos")
     st.dataframe(df_investimentos, width="stretch")
+
+    col_inv_b1, col_inv_b2 = st.columns(2)
+    with col_inv_b1:
+        st.download_button(
+            label="📥 Baixar Planilha de Investimentos (CSV)",
+            data=df_investimentos.to_csv(index=False).encode("utf-8"),
+            file_name="meus_investimentos.csv",
+            mime="text/csv"
+        )
+    with col_inv_b2:
+        if st.button("🗑️ Apagar Último Investimento"):
+            if not df_investimentos.empty:
+                df_investimentos = df_investimentos.iloc[:-1]
+                df_investimentos.to_csv("investimentos.csv", index=False)
+                st.rerun()
 
     if not df_investimentos.empty:
         st.markdown("---")
