@@ -1,5 +1,5 @@
 [data-testid="stAppViewContainer"] {
-    background-color: #D0D0D0;
+    background-color: #D0D0D0; 
 }
 [data-testid="stHeader"] {
     background-color: rgba(0, 0, 0, 0);
