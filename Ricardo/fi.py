@@ -31,7 +31,6 @@ vale_alimentacao = st.sidebar.number_input("Vale Alimentação (R$)", value=600.
 vale_transporte = st.sidebar.number_input("Vale Transporte (R$)", value=250.0)
 
 
-
 if os.path.exists("despesas.csv"):
     df_gastos = pd.read_csv("despesas.csv")
 else:
@@ -91,34 +90,52 @@ st.markdown("---")
 
 aba_gastos, aba_investimentos = st.tabs(["🛒 Controle de Gastos", "📈 Meus Investimentos"])
 
-
-
 with aba_gastos:
     st.write("### 📝 Registrar Nova Despesa")
+
+    def registrar_gasto():
+        desc = st.session_state.input_desc_gasto
+        val = st.session_state.input_val_gasto
+        cat = st.session_state.input_cat_gasto
+        dt = st.session_state.input_data_gasto
+        
+        if desc != "" and val > 0:
+            df_atual = pd.read_csv("despesas.csv")
+            novo = pd.DataFrame([{
+                "Data": dt.strftime("%d/%m/%Y"),
+                "Descrição": desc,
+                "Categoria": cat,
+                "Valor": val
+            }])
+            df_atual = pd.concat([df_atual, novo], ignore_index=True)
+            df_atual.to_csv("despesas.csv", index=False)
+
+            st.session_state.input_desc_gasto = ""
+            st.session_state.input_val_gasto = 0.0
+            st.session_state.msg_sucesso = True
+        else:
+            st.session_state.msg_erro = True
+
     col_form1, col_form2 = st.columns(2)
 
     with col_form1:
-        descricao_gasto = st.text_input("Descrição do Gasto (ex: Mercado, Gasolina)")
-        categoria_gasto = st.selectbox("Categoria", ["Alimentação", "Transporte", "Lazer", "Moradia", "Outros"])
+        st.text_input("Descrição do Gasto (ex: Mercado, Gasolina)", key="input_desc_gasto")
+        st.selectbox("Categoria", ["Alimentação", "Transporte", "Lazer", "Moradia", "Outros"], key="input_cat_gasto")
 
     with col_form2:
-        valor_gasto = st.number_input("Valor da Despesa (R$)", min_value=0.0, key="v_gasto")
-        data_gasto = st.date_input("Data do Gasto", value=datetime.now().date(), key="d_gasto")
+        st.number_input("Valor da Despesa (R$)", min_value=0.0, key="input_val_gasto")
+        st.date_input("Data do Gasto", value=datetime.now().date(), key="input_data_gasto")
 
-    if st.button("Salvar Gasto"):
-        if descricao_gasto != "" and valor_gasto > 0:
-            novo_gasto = pd.DataFrame([{
-                "Data": data_gasto.strftime("%d/%m/%Y"),
-                "Descrição": descricao_gasto,
-                "Categoria": categoria_gasto,
-                "Valor": valor_gasto
-            }])
-            df_gastos = pd.concat([df_gastos, novo_gasto], ignore_index=True)
-            df_gastos.to_csv("despesas.csv", index=False)
-            st.success("Gasto registrado com sucesso!")
-            st.rerun()
-        else:
-            st.error("Preencha a descrição e coloque um valor maior que zero.")
+    st.button("Salvar Gasto", on_click=registrar_gasto)
+
+    if st.session_state.get("msg_sucesso"):
+        st.success("Gasto registrado com sucesso!")
+        st.session_state.msg_sucesso = False
+    if st.session_state.get("msg_erro"):
+        st.error("Preencha a descrição e coloque um valor maior que zero.")
+        st.session_state.msg_erro = False
+
+
 
     st.markdown("---")
     st.write("### 📋 Histórico Geral de Despesas")
@@ -155,10 +172,16 @@ with aba_gastos:
 
 with aba_investimentos:
     st.write("### 📝 Registrar Novo Investimento")
+    if st.session_state.get("limpar_inv"):
+        st.session_state["nome_inv"] = ""
+        st.session_state["v_inv"] = 0.0
+        st.session_state["limpar_inv"] = False
+        st.success("Investimento registrado com sucesso!")
+
     col_inv1, col_inv2 = st.columns(2)
 
     with col_inv1:
-        ativo_investido = st.text_input("Nome do Investimento (ex: Tesouro Direto, CDB Itaú, Ação X)")
+        ativo_investido = st.text_input("Nome do Investimento (ex: Tesouro Direto, CDB Itaú, Ação X)", key="nome_inv")
         tipo_investimento = st.selectbox("Tipo de Ativo", ["Renda Fixa", "Ações", "Fundos Imobiliários", "Criptomoedas", "Outros"])
 
     with col_inv2:
@@ -176,6 +199,7 @@ with aba_investimentos:
             df_investimentos = pd.concat([df_investimentos, novo_investimento], ignore_index=True)
             df_investimentos.to_csv("investimentos.csv", index=False)
             st.success("Investimento registrado com sucesso!")
+            st.session_state["limpar_inv"] = True
             st.rerun()
         else:
             st.error("Preencha o nome do investimento e coloque um valor maior que zero.")
